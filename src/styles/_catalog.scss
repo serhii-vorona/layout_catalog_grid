@@ -1,10 +1,20 @@
+@mixin columns($width, $col) {
+  @media (min-width: $width) {
+    grid-template-columns: repeat($col, 200px);
+  }
+}
+
 .catalog {
   display: grid;
   gap: 48px;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(1, 200px);
 
   max-width: 1024px;
   margin: 0 auto;
+
+  @include columns(488px, 2);
+  @include columns(768px, 3);
+  @include columns(1024px, 4);
 
   &__card {
     display: flex;
@@ -14,18 +24,5 @@
     height: 300px;
     border: 1px solid #ccc;
     border-radius: 5px;
-  }
-
-}
-
-@media (max-width: 768px) {
-  .catalog {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 488px) {
-  .catalog {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
